@@ -10,13 +10,13 @@ image.src = logo;
 domDisplay();
 
 const Details = (lists, id) => {
-  const list = lists.find(() => lists.idmeal === id);
+  const list = lists.find(() => lists.idMeal === id);
   food.src = list.strMealThumb;
   desc.innerHTML = list.strMeal;
 };
 
 const displayDetails = async (e) => {
-  await fetch(url).then((res) => res.json()).then((json) => Details(json.meals, e.target.id));
+  await fetch(url).then((res) => res.json()).then((json) => Details(json.meals, e.target.getAttribute('id')));
 };
 
 document.getElementById('content').onclick = (e) => {
