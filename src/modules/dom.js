@@ -12,17 +12,17 @@ function show(meal) {
         <i class="fa fa-heart-o" aria-hidden="true"></i>
     </div>
     </div>
-    <h2 class="comment">Comments</h2>
+    <button class="comment" id=${meal.idmeal}>Comments</button>
 </div>
 </div>`;
 }
-const mealdisplay = (list) => {
+const mealDisplay = (list) => {
   list.forEach((item, index) => {
     show(item, index);
   });
 };
-const domdisplay = async () => {
-  await fetch(url).then((res) => res.json()).then((json) => mealdisplay(json.meals));
+const domDisplay = async () => {
+  await fetch(url).then((res) => res.json()).then((json) => mealDisplay(json.meals));
 };
 
-export default domdisplay;
+export default domDisplay;
