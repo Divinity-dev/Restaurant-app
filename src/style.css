@@ -87,3 +87,38 @@ a {
   text-align: center;
   border: 3px solid #000;
 }
+
+.popup {
+  background: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.popup-content {
+  height: 350px;
+  width: 350px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 6px;
+  position: relative;
+}
+
+input {
+  margin: 20px auto;
+  display: block;
+  width: 50%;
+  padding: 8px;
+  border: 1px solid gray;
+}
+
+.close-btn {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+}
