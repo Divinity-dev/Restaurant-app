@@ -101,8 +101,8 @@ a {
 }
 
 .popup-content {
-  height: 350px;
-  width: 350px;
+  height: 440px;
+  width: 400px;
   background: #fff;
   padding: 20px;
   border-radius: 6px;
@@ -114,6 +114,16 @@ input {
   display: block;
   width: 50%;
   padding: 8px;
+  border-radius: 6px;
+  border: 1px solid gray;
+}
+
+.text-area {
+  margin: 20px auto;
+  display: block;
+  width: 50%;
+  border-radius: 6px;
+  padding: 8px;
   border: 1px solid gray;
 }
 
@@ -121,4 +131,32 @@ input {
   position: absolute;
   top: -1px;
   right: -1px;
+}
+
+#img-food {
+  width: 140px;
+  height: 130px;
+  border-radius: 8px;
+}
+
+.description {
+  font-weight: bold;
+}
+
+.cmt-title {
+  font-weight: bold;
+}
+
+.comment-btn {
+  width: 80px;
+  height: 30px;
+  border-radius: 8px;
+  border: 1px solid gray;
+  color: #000;
+  font-weight: bold;
+}
+
+.comment-btn:hover {
+  background-color: aquamarine;
+  cursor: pointer;
 }

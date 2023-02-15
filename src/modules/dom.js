@@ -12,7 +12,7 @@ function show(meal) {
         <i class="fa fa-heart-o" aria-hidden="true"></i>
     </div>
     </div>
-    <button class="comment" id=${meal.idmeal}>Comments</button>
+    <button class="comment" id=${meal.idMeal}>Comments</button>
 </div>
 </div>`;
 }
