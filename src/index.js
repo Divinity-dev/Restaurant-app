@@ -1,3 +1,4 @@
+/* eslint-disable */ 
 import './style.css';
 import logo from './images/logo.jpg';
 import domDisplay from './modules/dom.js';
