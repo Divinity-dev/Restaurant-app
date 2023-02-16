@@ -3,10 +3,15 @@ import logo from './images/logo.jpg';
 import domDisplay from './modules/dom.js';
 import { url, url2 } from './modules/url.js';
 import send from './modules/send.js';
+import sendComment from './modules/comment.js';
 
 const foods = document.querySelector('.foods');
 const desc = document.querySelector('.description');
 const image = document.querySelector('.logo');
+const commentBtn = document.querySelector('comment-btn');
+const name = document.querySelector('.name');
+const insights = document.querySelector('.text-area');
+
 image.src = logo;
 domDisplay();
 
@@ -46,4 +51,12 @@ document.getElementById('content').onclick = (e) => {
 
 document.querySelector('.close-btn').addEventListener('click', () => {
   document.querySelector('.popup').style.display = 'none';
+});
+
+commentBtn.addEventListener('click', (e) => {
+  sendComment({
+    item_id: e.idMeal,
+    username: name.value,
+    comment: insights.value,
+  });
 });
