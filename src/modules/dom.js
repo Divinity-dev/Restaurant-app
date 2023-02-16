@@ -1,15 +1,15 @@
-import url from './url.js';
+import { url } from './url.js';
 
 const content = document.getElementById('content');
 function show(meal) {
-  content.innerHTML += `<div class="conten-child">
+  content.innerHTML += `<div class="content-child">
 <div class="content-grandchild ">
     <img src=${meal.strMealThumb} alt="">
     <div class="food">
         <h3>${meal.strMeal}</h3>
         <div class="span">
-        <span>5</span>
-        <i class="fa fa-heart-o" aria-hidden="true"></i>
+        <span class="likes"></span>
+        <i class="fa fa-heart-o" aria-hidden="true" id=${meal.idMeal}></i>
     </div>
     </div>
     <button class="comment" id=${meal.idMeal}>Comments</button>
