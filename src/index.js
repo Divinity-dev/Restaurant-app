@@ -8,21 +8,26 @@ import { getComments, postComment } from './modules/comments.js';
 const foods = document.querySelector('.foods');
 const desc = document.querySelector('.description');
 const image = document.querySelector('.logo');
-const commentBtn = document.querySelector('comment-btn');
+const commentBtn = document.querySelector('.comment-btn');
 const addCmtBtn = document.querySelector('#addCmtBtn')
 const comm = document.querySelector('.all-comments')
 
 image.src = logo;
 domDisplay();
 
-const Details = (lists, id) => {
+const Details = async (lists, id) => {
   const list = lists.find((list) => list.idMeal === id);
   foods.src = list.strMealThumb;
   desc.innerHTML = list.strMeal;
-  console.log(commentBtn);
-  commentBtn.setAttribute('data-index',list.idMeal);
-  // addcommentSubmitListener();
-  getComments(list.idMeal);
+  // console.log(commentBtn);
+  commentBtn.setAttribute('data-index', list.idMeal);
+  
+  const comments = await getComments(list.idMeal);
+  // console.log(comments);
+  console.log(comments);
+  comments.forEach((list) => {
+    document.querySelector('.all-comments').innerHTML += `<li>${list.creation_date} ${list.username}: ${list.comment}</li>`;
+  });
 };
 
 const getAllLikes = async () => {
@@ -57,16 +62,27 @@ document.querySelector('.close-btn').addEventListener('click', () => {
   document.querySelector('.popup').style.display = 'none';
 });
 
+const nameElement = document.querySelector('.name');
+const commentElement = document.querySelector('.text-area');
+
 const submitComment = async (mealId) => {
-  const nameElement = document.querySelector('.name');
-  const commentElement = document.querySelector('.text-area');
   const posted = await (mealId,nameElement,commentElement);
   posted ? console.log('comment sucessfully submitted') : console.log('submission failed');
 }
 
-document.getElementById('addCmtForm').addEventListener('submit',  (e) => {
+// document.getElementById('addCmtForm').addEventListener('submit',  (e) => {
+//   e.preventDefault();
+//   const mealId = e.target.getAttribute('data-index');
+//   submitComment(mealId);
+//   postComment(mealId, nameElement.value, commentElement.value);
+//   displayDetails(e);
+// });
+
+commentBtn.addEventListener('click', (e) => {
   e.preventDefault();
   const mealId = e.target.getAttribute('data-index');
+  // console.log(mealId + nameElement.value + commentElement.value);
   submitComment(mealId);
-  getComments(mealId);
-});
+  postComment(mealId, nameElement.value, commentElement.value);
+  displayDetails(e);
+})

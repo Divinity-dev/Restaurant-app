@@ -3,7 +3,7 @@ import { url3 } from './url.js';
 export const postComment = async (MealId, name, message) => {
   if (name.value && message.value) {
    const postStatus = await fetch(url3, {
-      method: 'post',
+      method: 'POST',
       body: JSON.stringify({
         item_id: MealId,
         username: name.value,
@@ -20,8 +20,11 @@ export const postComment = async (MealId, name, message) => {
 };
 
 export const getComments = async (mealId) => {
-  const commentLink = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/rOpkEBLjDARrzi6r3P9W/comments'?item_id=${mealId}`;
-  const response = await fetch(commentLink).then((response) => response.json()).catch(() => []);
-//   return response;
-  console.log(response);
+  const commentLink = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/rOpkEBLjDARrzi6r3P9W/comments?item_id=${mealId}`;
+  const getStatus = await fetch(commentLink, {
+    method: 'GET',
+  });
+  
+  const comment = await getStatus.json();
+  return comment;
 };
