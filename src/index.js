@@ -9,24 +9,15 @@ const foods = document.querySelector('.foods');
 const desc = document.querySelector('.description');
 const image = document.querySelector('.logo');
 const commentBtn = document.querySelector('.comment-btn');
-const addCmtBtn = document.querySelector('#addCmtBtn')
-const comm = document.querySelector('.all-comments')
 
 image.src = logo;
 domDisplay();
 
-const Details = async (lists, id) => {
-  const list = lists.find((list) => list.idMeal === id);
-  foods.src = list.strMealThumb;
-  desc.innerHTML = list.strMeal;
-  commentBtn.setAttribute('data-index', list.idMeal);
-  showComments(list.idMeal);
-  document.querySelector('.count').innerHTML = getTotalMeal(lists);
-};
+const getTotalComments = (commentsArray) => commentsArray.length;
 
-const showComments = async(mealId) => {
+const showComments = async (mealId) => {
   const comments = await getComments(mealId);
-  if(comments.length > 0){
+  if (comments.length > 0) {
     document.querySelector('.all-comments').innerHTML = '';
     comments.forEach((list) => {
       document.querySelector('.all-comments').innerHTML += `<li>${list.creation_date} ${list.username}: ${list.comment}</li>`;
@@ -34,7 +25,15 @@ const showComments = async(mealId) => {
 
     document.querySelector('.counter').innerHTML = getTotalComments(comments);
   }
-}
+};
+
+const Details = async (lists, id) => {
+  const list = lists.find((list) => list.idMeal === id);
+  foods.src = list.strMealThumb;
+  desc.innerHTML = list.strMeal;
+  commentBtn.setAttribute('data-index', list.idMeal);
+  showComments(list.idMeal);
+};
 
 const getAllLikes = async () => {
   const x = await fetch(url2).then((res) => res.json());
@@ -72,9 +71,13 @@ const nameElement = document.querySelector('.name');
 const commentElement = document.querySelector('.text-area');
 
 const submitComment = async (mealId) => {
-  const posted = await postComment(mealId,nameElement,commentElement);
-  posted ? showComments(mealId) : console.log('submission failed');
-}
+  const posted = await postComment(mealId, nameElement, commentElement);
+  if (posted) {
+    showComments(mealId);
+  } else {
+    console.log('submission failed');
+  }
+};
 
 commentBtn.addEventListener('click', (e) => {
   e.preventDefault();
@@ -82,9 +85,5 @@ commentBtn.addEventListener('click', (e) => {
   submitComment(mealId);
 
   nameElement.value = '';
-  commentElement.value = "";
-})
-
-const getTotalComments = commentsArray => commentsArray.length;
-
-const getTotalMeal = mealArray => mealArray.length;
+  commentElement.value = '';
+});
