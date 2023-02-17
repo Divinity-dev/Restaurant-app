@@ -3,14 +3,14 @@ import logo from './images/logo.jpg';
 import domDisplay from './modules/dom.js';
 import { url, url2 } from './modules/url.js';
 import send from './modules/send.js';
-import sendComment from './modules/comment.js';
+import { getComments, postComment } from './modules/comments.js';
 
 const foods = document.querySelector('.foods');
 const desc = document.querySelector('.description');
 const image = document.querySelector('.logo');
 const commentBtn = document.querySelector('comment-btn');
-const name = document.querySelector('.name');
-const insights = document.querySelector('.text-area');
+const addCmtBtn = document.querySelector('#addCmtBtn')
+const comm = document.querySelector('.all-comments')
 
 image.src = logo;
 domDisplay();
@@ -19,6 +19,10 @@ const Details = (lists, id) => {
   const list = lists.find((list) => list.idMeal === id);
   foods.src = list.strMealThumb;
   desc.innerHTML = list.strMeal;
+  console.log(commentBtn);
+  commentBtn.setAttribute('data-index',list.idMeal);
+  // addcommentSubmitListener();
+  getComments(list.idMeal);
 };
 
 const getAllLikes = async () => {
@@ -53,10 +57,16 @@ document.querySelector('.close-btn').addEventListener('click', () => {
   document.querySelector('.popup').style.display = 'none';
 });
 
-commentBtn.addEventListener('click', (e) => {
-  sendComment({
-    item_id: e.idMeal,
-    username: name.value,
-    comment: insights.value,
-  });
+const submitComment = async (mealId) => {
+  const nameElement = document.querySelector('.name');
+  const commentElement = document.querySelector('.text-area');
+  const posted = await (mealId,nameElement,commentElement);
+  posted ? console.log('comment sucessfully submitted') : console.log('submission failed');
+}
+
+document.getElementById('addCmtForm').addEventListener('submit',  (e) => {
+  e.preventDefault();
+  const mealId = e.target.getAttribute('data-index');
+  submitComment(mealId);
+  getComments(mealId);
 });
