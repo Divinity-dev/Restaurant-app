@@ -19,16 +19,22 @@ const Details = async (lists, id) => {
   const list = lists.find((list) => list.idMeal === id);
   foods.src = list.strMealThumb;
   desc.innerHTML = list.strMeal;
-  // console.log(commentBtn);
   commentBtn.setAttribute('data-index', list.idMeal);
-  
-  const comments = await getComments(list.idMeal);
-  // console.log(comments);
-  console.log(comments);
-  comments.forEach((list) => {
-    document.querySelector('.all-comments').innerHTML += `<li>${list.creation_date} ${list.username}: ${list.comment}</li>`;
-  });
+  showComments(list.idMeal);
+  document.querySelector('.count').innerHTML = getTotalMeal(lists);
 };
+
+const showComments = async(mealId) => {
+  const comments = await getComments(mealId);
+  if(comments.length > 0){
+    document.querySelector('.all-comments').innerHTML = '';
+    comments.forEach((list) => {
+      document.querySelector('.all-comments').innerHTML += `<li>${list.creation_date} ${list.username}: ${list.comment}</li>`;
+    });
+
+    document.querySelector('.counter').innerHTML = getTotalComments(comments);
+  }
+}
 
 const getAllLikes = async () => {
   const x = await fetch(url2).then((res) => res.json());
@@ -66,23 +72,19 @@ const nameElement = document.querySelector('.name');
 const commentElement = document.querySelector('.text-area');
 
 const submitComment = async (mealId) => {
-  const posted = await (mealId,nameElement,commentElement);
-  posted ? console.log('comment sucessfully submitted') : console.log('submission failed');
+  const posted = await postComment(mealId,nameElement,commentElement);
+  posted ? showComments(mealId) : console.log('submission failed');
 }
-
-// document.getElementById('addCmtForm').addEventListener('submit',  (e) => {
-//   e.preventDefault();
-//   const mealId = e.target.getAttribute('data-index');
-//   submitComment(mealId);
-//   postComment(mealId, nameElement.value, commentElement.value);
-//   displayDetails(e);
-// });
 
 commentBtn.addEventListener('click', (e) => {
   e.preventDefault();
   const mealId = e.target.getAttribute('data-index');
-  // console.log(mealId + nameElement.value + commentElement.value);
   submitComment(mealId);
-  postComment(mealId, nameElement.value, commentElement.value);
-  displayDetails(e);
+
+  nameElement.value = '';
+  commentElement.value = "";
 })
+
+const getTotalComments = commentsArray => commentsArray.length;
+
+const getTotalMeal = mealArray => mealArray.length;
