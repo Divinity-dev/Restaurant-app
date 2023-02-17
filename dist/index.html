@@ -11,7 +11,7 @@
         <nav class="navigation">
             <img alt="logo" class="logo"/> 
             <ul class="nav-menu">
-                <li><a id="meal" class="active" href="#">Meal</a></li> 
+                <li><a id="meal" class="active" href="#">Meal(<span class="count"></span>)</a></li> 
                 <li><a id="service" href="#">Services</a></li> 
                 <li><a id="contact" href="#">Contact</a></li>
             </ul>
@@ -27,13 +27,13 @@
             <i class="fa-sharp fa-solid fa-circle-xmark close-btn"></i>
             <img class="foods" id="img-food">
             <p class="description"></p>
-            <p>comments()</p>
+            <p class="cmt-title">comments(<span class="counter"></span>)</p>
             <div class="all-comments"></div>
             <p>Add a comment</p>
-            <form class="frm">
-                <input type="text" placeholder="your name" required/>
-                <textarea placeholder="your insights" class="text-area"></textarea>
-                <button class="comment-btn">comment</button>
+            <form class="frm" id="addCmtForm">
+                <input type="text" placeholder="your name" class="name" id="name"/>
+                <textarea placeholder="your insights" class="text-area" id="text-area"></textarea>
+                <button type="submit" class="comment-btn">comment</button>
             </form>
         </div>
     </section>

@@ -16,11 +16,16 @@ function show(meal) {
 </div>
 </div>`;
 }
+
+const getTotalMeal = (mealArray) => mealArray.length;
+
 const mealDisplay = (list) => {
   list.forEach((item, index) => {
     show(item, index);
+    document.querySelector('.count').innerHTML = getTotalMeal(list);
   });
 };
+
 const domDisplay = async () => {
   await fetch(url).then((res) => res.json()).then((json) => mealDisplay(json.meals));
 };
