@@ -1,7 +1,7 @@
 import './style.css';
 import logo from './images/logo.jpg';
-import domDisplay from './modules/dom.js';
-import { url, url2 } from './modules/url.js';
+import { domDisplay, displayLikes } from './modules/dom.js';
+import { url } from './modules/url.js';
 import send from './modules/send.js';
 import { getComments, postComment } from './modules/comments.js';
 import getTotalComments from './modules/comment.js';
@@ -34,25 +34,6 @@ const Details = async (lists, id) => {
   showComments(list.idMeal);
 };
 
-const getAllLikes = async () => {
-  const x = await fetch(url2).then((res) => res.json());
-  return x;
-};
-
-// const likesCount = () => {
-//   document.querySelectorAll('.likes').forEach((like) => {
-//     like.innerHTML = displayLikes();
-//   })
-// }
-
-// likesCount();
-
-const displayLikes = async (likeNode, mealId) => {
-  const likes = await getAllLikes();
-  const likearr = likes.filter((like) => parseInt(like.item_id, 10) === parseInt(mealId, 10));
-  likeNode.innerHTML = likearr[0].likes;
-};
-
 const displayDetails = async (e) => {
   await fetch(url).then((res) => res.json()).then((json) => Details(json.meals, e.target.getAttribute('id')));
 };
@@ -71,6 +52,8 @@ document.getElementById('content').onclick = (e) => {
 };
 
 document.querySelector('.close-btn').addEventListener('click', () => {
+  document.querySelector('.popup .cmt-title .counter').innerHTML = 0;
+  document.querySelector('.popup .all-comments').innerHTML = '';
   document.querySelector('.popup').style.display = 'none';
 });
 
@@ -93,5 +76,4 @@ commentBtn.addEventListener('click', (e) => {
 
   nameElement.value = '';
   commentElement.value = '';
-  window.location().onload();
 });
