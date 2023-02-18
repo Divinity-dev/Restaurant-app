@@ -57,7 +57,7 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- <a href="https://github.com/Divinity-dev/Restaurant-app/dist">Live demo link</a>
+- <a href="https://divinity-dev.github.io/Restaurant-app/dist/">Live demo link</a>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
