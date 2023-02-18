@@ -2,7 +2,7 @@ import { url } from './url.js';
 import { getTotalMeal } from './mealcounter.js';
 
 const content = document.getElementById('content');
-function show(meal) {
+const show = (meal) => {
   content.innerHTML += `<div class="content-child">
 <div class="content-grandchild ">
     <img src=${meal.strMealThumb} alt="">
@@ -16,7 +16,7 @@ function show(meal) {
     <button class="comment" id=${meal.idMeal}>Comments</button>
 </div>
 </div>`;
-}
+};
 
 const mealDisplay = (list) => {
   list.forEach((item, index) => {

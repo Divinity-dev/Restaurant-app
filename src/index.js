@@ -39,6 +39,14 @@ const getAllLikes = async () => {
   return x;
 };
 
+// const likesCount = () => {
+//   document.querySelectorAll('.likes').forEach((like) => {
+//     like.innerHTML = displayLikes();
+//   })
+// }
+
+// likesCount();
+
 const displayLikes = async (likeNode, mealId) => {
   const likes = await getAllLikes();
   const likearr = likes.filter((like) => parseInt(like.item_id, 10) === parseInt(mealId, 10));
@@ -85,4 +93,5 @@ commentBtn.addEventListener('click', (e) => {
 
   nameElement.value = '';
   commentElement.value = '';
+  window.location().onload();
 });

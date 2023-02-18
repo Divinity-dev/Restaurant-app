@@ -15,9 +15,6 @@ export const postComment = async (MealId, name, message) => {
     .catch(() => false);
 
   return postStatus;
-  //   if (name.value && message.value) {
-
-//   }
 };
 
 export const getComments = async (mealId) => {
