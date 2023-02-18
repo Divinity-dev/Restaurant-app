@@ -4,6 +4,7 @@ import domDisplay from './modules/dom.js';
 import { url, url2 } from './modules/url.js';
 import send from './modules/send.js';
 import { getComments, postComment } from './modules/comments.js';
+import getTotalComments from './modules/comment.js';
 
 const foods = document.querySelector('.foods');
 const desc = document.querySelector('.description');
@@ -12,8 +13,6 @@ const commentBtn = document.querySelector('.comment-btn');
 
 image.src = logo;
 domDisplay();
-
-const getTotalComments = (commentsArray) => commentsArray.length;
 
 const showComments = async (mealId) => {
   const comments = await getComments(mealId);
