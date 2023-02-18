@@ -1,4 +1,5 @@
 import { url } from './url.js';
+import { getTotalMeal } from './mealcounter.js';
 
 const content = document.getElementById('content');
 function show(meal) {
@@ -16,8 +17,6 @@ function show(meal) {
 </div>
 </div>`;
 }
-
-const getTotalMeal = (mealArray) => mealArray.length;
 
 const mealDisplay = (list) => {
   list.forEach((item, index) => {
