@@ -1,5 +1,3 @@
-## kanban-capstone-project
-
 <a name="readme-top"></a>
 
 <!-- TABLE OF CONTENTS -->
@@ -23,7 +21,7 @@
 - [🙏 Acknowledgements](#acknowledgements)
 - [📝 License](#license)
 
-<!-- PROJECT DESCRIPTION -->
+
 
 # 📖 Javascript Capstone Project <a name="about-project"></a>
 
@@ -31,7 +29,7 @@
 
 ## 🛠 Built With <a name="built-with"></a>
 
-***For this project we used the Following tech-stack:
+***For this project we used the following tech stack:
 
 - HTML
 - CSS
